@@ -15,12 +15,14 @@ namespace Services
     {
         public string AddProduct(ProductDTO product)
         {
-            try
+            if (product != null)
             {
-                bool isValid = CheckProductName(product.Name);
-                if (isValid)
+                try
                 {
-                    var Pro = new List<Product>()
+                    bool isValid = CheckProductName(product.Name);
+                    if (isValid)
+                    {
+                        var Pro = new List<Product>()
                 {
                     new Product()
                     {
@@ -29,28 +31,29 @@ namespace Services
                         Name = product.Name,
                     }
                 }.ToList();
-                    var getAll = GetProductList();
-                    foreach (var item in Pro)
-                    {
-                        getAll.Add(item);
+                        var getAll = GetProductList();
+                        foreach (var item in Pro)
+                        {
+                            getAll.Add(item);
+                        }
+                        var fileName = PathFile.PathFileDataBase();
+                        JsonFile.SimpleWrite(getAll, fileName);
+                        return "added successfully.";
                     }
-                    var fileName = PathFile.PathFileDataBase();
-                    JsonFile.SimpleWrite(getAll, fileName);
-                    return "added successfully.";
-                }
-                else
-                {
-                    return "The selected product name is" +
-                            " incorrect or duplicate.";
-                }
+                    else
+                    {
+                        return "The selected product name is" +
+                                " incorrect or duplicate.";
+                    }
 
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Enter the name according to the given format");
+                }
             }
-            catch(Exception ex)
-            {
-                Console.WriteLine("Enter the name according to the given format");
-            }
-           
-            return null;
+
+            return "There is no product";
         }
 
         public string GetProductById(int id)
@@ -70,7 +73,7 @@ namespace Services
         }
         private bool CheckProductName(string productName)
         {
-           
+
             if (Regex.IsMatch(productName, "^[A-Z]{1}[a-z]{3}[a-zA-Z0-9]{1}_{1}[0-9]{3}$"))
             {
                 return true;
