@@ -13,11 +13,13 @@ using IHost host = Host.CreateDefaultBuilder(args).ConfigureServices(services =>
 
 var Product = host.Services.GetService<IProductRepository>();
 
-Product.AddProduct(new ProductDTO() { ProductId = 1, Name = "LapdT_123", Barcode = "12585865856" });
+//Product.AddProduct(new ProductDTO() { ProductId = 1, Name = "LapdT_123", Barcode = "12585865856" });
 //var pro = Product.GetProductList();
 //foreach (var item in pro)
 //{
 //    Console.WriteLine(item.Name);
 //}
+var Prod = Product.GetProductById(1);
+Console.WriteLine(Prod);
 host.Run();
 Console.ReadKey();

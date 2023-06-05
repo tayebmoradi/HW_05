@@ -55,7 +55,9 @@ namespace Services
 
         public string GetProductById(int id)
         {
-            throw new NotImplementedException();
+            var GetAll = GetProductList();
+            var FindId = GetAll.Find(p => p.ProductId == id);
+            return "ProductId : " + FindId.ProductId + " \n" + "Name : " + FindId.Name + " \n" + "Barcod : " + FindId.Barcode;
         }
 
         public List<Product> GetProductList()
