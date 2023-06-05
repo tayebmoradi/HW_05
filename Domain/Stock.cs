@@ -12,6 +12,6 @@ namespace Domain
         public string Name { get; set; }
         public int ProductId { get; set; }
         public int ProductQuantity { get; set; }
-        public int ProductPrice { get; set; }
+        public decimal ProductPrice { get; set; }
     }
 }
