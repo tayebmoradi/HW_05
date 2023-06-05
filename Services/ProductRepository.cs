@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Utility.ViewModel;
@@ -44,10 +45,11 @@ namespace Services
                 }
 
             }
-            catch
+            catch(Exception ex)
             {
-                throw;
+                Console.WriteLine("Enter the name according to the given format");
             }
+           
             return null;
         }
 
@@ -58,14 +60,18 @@ namespace Services
 
         public List<Product> GetProductList()
         {
-            throw new NotImplementedException();
+            var fileName = PathFile.PathFileDataBase();
+            var Read = JsonFile.SimpleRead(fileName);
+            var list = JsonSerializer.Deserialize<List<Product>>(Read);
+
+            return list.ToList();
         }
         private bool CheckProductName(string productName)
         {
-            var sameName = GetProductList().FirstOrDefault(p => p.Name == productName);
-            if (sameName == null)
+           
+            if (Regex.IsMatch(productName, "^[A-Z]{1}[a-z]{3}[a-zA-Z0-9]{1}_{1}[0-9]{3}$"))
             {
-                return Regex.IsMatch(productName, @"^[A-Z]+([a-z]{3})+.+_+([/d]{3})$");
+                return true;
             }
             else
             {

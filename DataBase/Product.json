@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "ProductId": 1,
+    "Name": "Lapto_125",
+    "Barcode": "12585865856"
+  },
+  {
+    "ProductId": 1,
+    "Name": "LapdT_123",
+    "Barcode": "12585865856"
+  }
+]

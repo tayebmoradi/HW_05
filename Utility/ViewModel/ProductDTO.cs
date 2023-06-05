@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Utility.ViewModel
 {
-    internal class ProductDTO
+    public class ProductDTO
     {
+        public int ProductId { get; set; }
+        public string Name { get; set; }
+        public string Barcode { get; set; }
     }
 }
