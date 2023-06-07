@@ -1,12 +1,17 @@
 [
   {
     "ProductId": 1,
-    "Name": "Lapto_125",
+    "Name": "laptop",
     "Barcode": "12585865856"
   },
   {
-    "ProductId": 1,
-    "Name": "LapdT_123",
-    "Barcode": "12585865856"
+    "ProductId": 2,
+    "Name": "mobile",
+    "Barcode": "1259685"
+  },
+  {
+    "ProductId": 3,
+    "Name": "Micro_123",
+    "Barcode": "0"
   }
 ]

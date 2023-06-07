@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Utility.ViewModel
 {
-    internal class StockDTO
+    public class StockDTO
     {
+        public int StockId { get; set; }
+        public string Name { get; set; }
+        public int ProductId { get; set; }
+        public int ProductQuantity { get; set; }
+        public decimal ProductPrice { get; set; }
     }
 }
