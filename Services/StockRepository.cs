@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Utility;
 using Utility.ViewModel;
 
 namespace Services
@@ -42,7 +43,7 @@ namespace Services
 
                 var fileName = PathFile.PathFileDataBase1();
                 JsonFile.SimpleWrite(list, fileName);
-
+                Log.Logger(productInStock);
                 return $"The {u.Name} was updated.";
             }
 
@@ -109,6 +110,7 @@ namespace Services
 
         public string SaleProduct(int productId, int cnt)
         {
+            var productlist = GetStockList();
             var product = GetStockList().FirstOrDefault(p => p.ProductId == productId);
             int quantity = GetProductQuantity(productId);
             if (quantity > cnt)
@@ -124,6 +126,7 @@ namespace Services
 
                 var fileName = PathFile.PathFileDataBase1();
                 JsonFile.SimpleWrite(list, fileName);
+                //Log.Logger(quantity , cnt);
                 return $"{cnt} items of {product.Name} were sold successfully";
             }
             else

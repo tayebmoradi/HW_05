@@ -29,5 +29,17 @@ namespace DataBase
             projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.Parent.FullName;
             return $"{projectDirectory}\\DataBase\\SalesList.txt";
         }
+        public static string PathFileDataBaseLogSale()
+        {
+            workingDirectory = Environment.CurrentDirectory;
+            projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.Parent.FullName;
+            return $"{projectDirectory}\\DataBase\\LogSale.txt";
+        }
+        public static string PathFileDataBaseLogBuy()
+        {
+            workingDirectory = Environment.CurrentDirectory;
+            projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.Parent.FullName;
+            return $"{projectDirectory}\\DataBase\\LogBuy.txt";
+        }
     }
 }
