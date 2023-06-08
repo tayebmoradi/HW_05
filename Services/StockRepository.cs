@@ -18,15 +18,15 @@ namespace Services
         }
         public string BuyProduct(StockDTO productInStock)
         {
-
-            var u = GetStockList().FirstOrDefault(p => p.ProductId == productInStock.ProductId);
-            if (u != null)
+            var stockList = GetStockList().FirstOrDefault(p => p.ProductId == productInStock.ProductId);
+            if (stockList != null)
             {
-
+                //(ProductPrice*ProductQuantity موجود)+( ProductPrice*ProductQuantityخریداری شده ) / 
+                // تعداد کل موجودی
                 decimal productPrice = ((productInStock.ProductPrice * productInStock.ProductQuantity) +
-                    (u.ProductPrice * u.ProductQuantity))
-                    / (productInStock.ProductQuantity + u.ProductQuantity);
-                u.ProductPrice = Math.Round(productPrice, 1);
+                (stockList.ProductPrice * stockList.ProductQuantity)) / (productInStock.ProductQuantity +
+                stockList.ProductQuantity);
+                stockList.ProductPrice = Math.Round(productPrice, 1);
                 List<Stock> list = GetStockList();
                 foreach (var item in list)
                 {
@@ -39,7 +39,7 @@ namespace Services
                 var fileName = PathFile.PathFileDataBase1();
                 JsonFile.SimpleWrite(list, fileName);
                 Log.Logger(productInStock);
-                return $"The selected product was updated with this {u.Name}";
+                return $"The selected product was updated with this {stockList.Name}";
             }
 
             else
