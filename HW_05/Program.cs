@@ -69,10 +69,14 @@ while (flag)
             Console.WriteLine("ProductId :" + item.ProductId + " " + "ProductName :" + item.ProductName + " " + "ProductBarcode :" + item.ProductQuantity);
         }
         Console.WriteLine("Enter the desired product ID :");
-
         var Id = Convert.ToInt32(Console.ReadLine());
 
-        Console.WriteLine(Stock.BuyProduct(new StockDTO() { ProductId = Id, ProductQuantity = 1 }));
+        Console.WriteLine("Enter the desired product Name :");
+        var name = Console.ReadLine();
+
+        Console.WriteLine("Enter the desired product Price :");
+        var Price = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine(Stock.BuyProduct(new StockDTO() { ProductId = Id, ProductQuantity = 1 , Name = name , ProductPrice = Price }));
         Console.ReadKey();
 
     }

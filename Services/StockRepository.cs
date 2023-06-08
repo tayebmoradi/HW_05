@@ -1,11 +1,6 @@
 ﻿using DataBase;
 using Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using Utility;
 using Utility.ViewModel;
 
@@ -44,7 +39,7 @@ namespace Services
                 var fileName = PathFile.PathFileDataBase1();
                 JsonFile.SimpleWrite(list, fileName);
                 Log.Logger(productInStock);
-                return $"The {u.Name} was updated.";
+                return $"The selected product was updated with this {u.Name}";
             }
 
             else
@@ -68,13 +63,8 @@ namespace Services
 
                     _productRepository.AddProduct(Pro);
                     AddStock(productInStock);
-
-                    //return $"The {productSerch.Name} was added to stock.";
                 }
-                else
-                {
-                    return $"The {productInStock.Name} was not in the products list.";
-                }
+               
                 return null;
             }
         }
@@ -131,7 +121,7 @@ namespace Services
             }
             else
             {
-                return "Insufficient stock";
+                return "Insufficient inventory";
             }
         }
         public List<Stock> GetStockList()
@@ -140,7 +130,7 @@ namespace Services
             var Read = JsonFile.SimpleRead(fileName);
             var jsonString = JsonSerializer.Deserialize<List<Stock>>(Read);
 
-            return jsonString.ToList();
+            return jsonString;
         }
         private int GetProductQuantity(int productId)
         {
@@ -178,9 +168,9 @@ namespace Services
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine(ex.Message);
             }
-            return null;
+            return "The product has been completely saved";
 
         }
 

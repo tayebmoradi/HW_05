@@ -16,7 +16,7 @@ namespace Utility
             using (TextWriter textWriter = File.AppendText(Path))
             {
                 textWriter.WriteLine("Time:" + DateTime.Now);
-                textWriter.WriteLine("ProductName + " + product.Name);            
+                textWriter.WriteLine("ProductName : " + product.Name);            
                 textWriter.WriteLine("Quantity:" + product.ProductQuantity);            
                 textWriter.WriteLine("Price:" + product.ProductPrice);            
             }

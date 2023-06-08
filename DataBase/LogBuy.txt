@@ -13,3 +13,7 @@ Time:6/7/2023 11:03:52 PM
 ProductName + 
 Quantity:1
 Price:0
+Time:6/8/2023 7:45:39 AM
+ProductName + test
+Quantity:1
+Price:1000
